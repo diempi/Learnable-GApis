@@ -56,9 +56,25 @@ html, body,#gmap{
 }
 
 #gmap{
-	width: 640px;
-	height: 480px;
+/*	width: 640px;
+	height: 480px;*/
 }
+
+#ltlgcoords{
+    position: fixed;
+    bottom: 1em;
+    left: 10%;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 2em;
+    border: 2px solid black;
+    background: rgb(245,245,245);
+    background: rgba(245,245,245,.9);
+    span{
+        margin: 0 0.4em;
+    }
+}
+
 
 /*=====================================*/
 
