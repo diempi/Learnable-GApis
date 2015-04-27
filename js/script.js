@@ -118,7 +118,16 @@ function mapEventListeners(){
 		function(event){
 			updateCurrentLatLng(event.latLng);
 		});
+	
+	// Wait for map to load
+	var listenerIdle = google.maps.event.addListenerOnce(map, 'idle',
+		function(){
+			alert('Map is ready!');
+		}
+	);
+
 }
+
 
 // Main Code
 google.maps.event.addDomListener(window,'load',loadMap());
