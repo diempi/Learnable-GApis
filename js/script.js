@@ -105,7 +105,41 @@ function loadMap(){
 	map = new google.maps.Map(mapid, mapOptions);
 	updateCurrentLatLng(map.getCenter());
 
+	//Update the url with the current location and zoom
+	updateUrlLocation(map.getCenter(), map.getZoom());
+
 	mapEventListeners();
+}
+
+
+
+function mapEventListeners(){
+	var mouseMoveChanged = google.maps.event.addListener(map,'mousemove',
+		function(event){
+			updateCurrentLatLng(event.latLng);
+		});
+
+	// Wait for map to load
+	var listenerIdle = google.maps.event.addListenerOnce(map, 'idle',
+		function(){
+			
+			//alert('Map is ready!');
+		}
+	);
+
+	//Drag end
+	var listenerDragEnd = google.maps.event.addListener(map, 'dragend',
+		function(){
+			updateUrlLocation(map.getCenter(),map.getZoom);
+		}
+	);
+
+	//Zoom Changed
+	var listenerZoomChanged = google.maps.event.addListener(map, 'zoom_changed',
+		function(){
+			updateUrlLocation(map.getCenter(), map.getZoom());
+		}
+	);
 }
 
 function updateCurrentLatLng(latLng){
@@ -113,21 +147,14 @@ function updateCurrentLatLng(latLng){
 	lng.innerHTML = latLng.lng();
 }
 
-function mapEventListeners(){
-	var mouseMoveChanged = google.maps.event.addListener(map,'mousemove',
-		function(event){
-			updateCurrentLatLng(event.latLng);
-		});
-	
-	// Wait for map to load
-	var listenerIdle = google.maps.event.addListenerOnce(map, 'idle',
-		function(){
-			alert('Map is ready!');
-		}
-	);
 
+// Updating the URL with the map center and zoom
+function updateUrlLocation(center,zoom){
+	var url= '?lat='+center.lat()+'&lon='+center.lng()+'&zoom='+zoom;
+
+	// Set the URL
+	window.history.pushState({center: center, zoom: zoom},'map center',url);
 }
-
 
 // Main Code
 google.maps.event.addDomListener(window,'load',loadMap());
