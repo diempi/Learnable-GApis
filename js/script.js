@@ -130,7 +130,7 @@ function mapEventListeners(){
 	//Drag end
 	var listenerDragEnd = google.maps.event.addListener(map, 'dragend',
 		function(){
-			updateUrlLocation(map.getCenter(),map.getZoom);
+			updateUrlLocation(map.getCenter(),map.getZoom());
 		}
 	);
 
@@ -153,7 +153,7 @@ function updateUrlLocation(center,zoom){
 	var url= '?lat='+center.lat()+'&lon='+center.lng()+'&zoom='+zoom;
 
 	// Set the URL
-	window.history.pushState({center: center, zoom: zoom},'map center',url);
+	window.history.pushState({center: center, zoom: zoom},'map center', url);
 }
 
 // Main Code
