@@ -1,12 +1,52 @@
 // Variables
 var map;
 
+	// Style Map Elements
+	var mapStyle = [
+		{
+			'stylers' :[
+				{'saturation': -100},
+				{'gamma':1}
+			]
+		},
+		{
+			'elementType': 'labels.text.stroke',
+			'stylers': [
+				{'visibilty': 'off'}
+			]
+		},
+		{
+			'featureType': 'road',
+			'elementType': 'geometry',
+			'stylers': [
+				{'visibilty': 'simplified'}
+			]
+		},
+		{
+			'featureType': 'water',
+			'stylers': [
+				{'visibilty': 'on'},
+				{'saturation': 50},
+				{'gamma':0},
+				{'hue': '#50a5d1'}
+			]
+		},
+		{
+			'featureType': 'landscape',
+			'elementType': 'all',
+			'stylers':[
+				{'color':'#e2e2e2'}
+			]
+		},
+	];
+
+
 // Methods
 	// Creating the map
 function loadMap(){
 	var mapOptions = {
 		// Map Zoom - Required
-		zoom: 18,
+		zoom: 14,
 
 		// Map Center - Required
 		center: new google.maps.LatLng(50.633333, 5.566667),
@@ -28,10 +68,10 @@ function loadMap(){
 		},
 
 		//Set default Maptype
-		mapTypeId: google.maps.MapTypeId.HYBRID,
+		mapTypeId: google.maps.MapTypeId.TERRAIN,
 
 		//0 to 45deg only valid for satellite and terrain
-		//tilt: 30,
+		tilt: 30,
 
 		// Zoom Controls
 		zoomControl: true,
@@ -54,6 +94,9 @@ function loadMap(){
 		overviewMapControlOptions: {
 			opened: true
 		},
+
+		// Set The map style
+		styles: shadeofgrey
 	};
 
 	var mapid = document.getElementById('gmap');
