@@ -1,5 +1,7 @@
 // Variables
 var map;
+var lat = document.getElementById('latcoords');
+var lng = document.getElementById('longcoords');
 
 	// Style Map Elements
 	var mapStyle = [
@@ -101,6 +103,21 @@ function loadMap(){
 
 	var mapid = document.getElementById('gmap');
 	map = new google.maps.Map(mapid, mapOptions);
+	updateCurrentLatLng(map.getCenter());
+
+	mapEventListeners();
+}
+
+function updateCurrentLatLng(latLng){
+	lat.innerHTML = latLng.lat();
+	lng.innerHTML = latLng.lng();
+}
+
+function mapEventListeners(){
+	var mouseMoveChanged = google.maps.event.addListener(map,'mousemove',
+		function(event){
+			updateCurrentLatLng(event.latLng);
+		});
 }
 
 // Main Code
