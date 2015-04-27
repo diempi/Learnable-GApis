@@ -119,6 +119,22 @@ function mapEventListeners(){
 			updateCurrentLatLng(event.latLng);
 		});
 
+
+	// Use the right click to set the zoom to 11
+	var mouseDoubleClick = google.maps.event.addListener(map, 'rightclick',
+		function (event) {
+			var z = map.getZoom() + 1;
+			if(z<16){
+				map.setZoom(z);
+			}
+			else{
+				map.setZoom(11);
+			}
+
+			map.setCenter(event.latLng);
+		}
+	);
+
 	// Wait for map to load
 	var listenerIdle = google.maps.event.addListenerOnce(map, 'idle',
 		function(){
