@@ -48,7 +48,7 @@ var lng = document.getElementById('longcoords');
 function loadMap(){
 	var mapOptions = {
 		// Map Zoom - Required
-		zoom: 14,
+		zoom: 11,
 
 		// Map Center - Required
 		center: new google.maps.LatLng(50.633333, 5.566667),
