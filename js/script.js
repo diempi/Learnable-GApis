@@ -63,7 +63,7 @@
 			icon: {
 
 				// Url of the image
-				url: 'img/airplane-green.png',
+				url: 'img/airplane-'+airport.icon+'.png',
 
 				// Sets the image size
 				size: new google.maps.Size(32,32),
@@ -202,8 +202,19 @@ function loadMap(){
         //Total flights
         airport.totalflights = (airport.aop + airport.dop);
         
-        //Set the icon color
-        airport.icon = 'green'; 
+        //Set the icon
+        if(airport.totalper >= 80) {
+            airport.icon = 'green';            
+        } 
+        else if((70 <= airport.totalper) && (airport.totalper < 80)) {
+            airport.icon = 'yellow';            
+        } 
+        else if((60 <= airport.totalper) && (airport.totalper < 70)) {
+            airport.icon = 'orange';
+        }
+        else {
+            airport.icon = 'red';
+        }
         
         //Set the icon size
         airport.iconsize = new google.maps.Size(32,32);
