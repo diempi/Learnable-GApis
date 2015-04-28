@@ -113,9 +113,26 @@ var lng = document.getElementById('longcoords');
 	
 	// INfowindow 
 	function addInfoWindow(marker){
+
+		var contentString = '<div class="infowindowcontent">'+
+      '<div class="row">' +
+      '<p class="total greenbk">78.3%</p>'+
+      '<p class="location">LIÈGE</p>'+
+      '<p class="code">LG</p>'+
+      '</div>'+
+      '<div class="data">'+
+      '<p class="tagbelow">Avg On-Time</p>'+
+      '<p class="label">Arrivées</p>'+
+      '<p class="details">76% (8,590)</p>' +
+      '<p class="label">Départs</p>'+
+      '<p class="details">80.5% (8,589)</p>' +
+      '<p class="coords">50.633333, 5.566667</p>' +
+      '</div>' +
+     '</div>';
+
 		var InfoWindow = new google.maps.InfoWindow({
 
-			content: 'OUfti',
+			content: contentString,
 
 			disableAutoPan: false,
 
