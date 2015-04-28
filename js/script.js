@@ -111,6 +111,26 @@ var lng = document.getElementById('longcoords');
 		return marker;
 	}
 	
+	// INfowindow 
+	function addInfoWindow(marker){
+		var InfoWindow = new google.maps.InfoWindow({
+
+			content: 'OUfti',
+
+			disableAutoPan: false,
+
+			maxWidth: 300,
+
+			zIndex: 1
+
+		});
+
+		google.maps.event.addListener(marker, 'click',function(e){
+
+			InfoWindow.open(map, marker);
+		});
+	}
+
 
 // ===============================
 
@@ -173,13 +193,17 @@ function loadMap(){
 
 	var mapid = document.getElementById('gmap');
 	map = new google.maps.Map(mapid, mapOptions);
-	updateCurrentLatLng(map.getCenter());
+	//updateCurrentLatLng(map.getCenter());
 
 	//Update the url with the current location and zoom
-	updateUrlLocation(map.getCenter(), map.getZoom());
+	//updateUrlLocation(map.getCenter(), map.getZoom());
 
-	mapEventListeners();
-	addMarker();
+	//mapEventListeners();
+
+	// Marker creation
+	var newMarker = this.addMarker();
+
+	addInfoWindow(newMarker);
 }
 
 
