@@ -183,7 +183,22 @@ function updateUrlLocation(center,zoom){
 			
 			//Position of marker
 			position: new google.maps.LatLng(50.633333, 5.566667),
-			map: map
+			
+			map: map,	
+
+			icon: {
+
+				url: 'img/airplane-green.png',
+
+				size: new google.maps.Size(32,32),
+
+				origin: new google.maps.Point(0,0),
+
+				anchor: new google.maps.Point(16,32),
+
+				scaledSize: new google.maps.Size(32,32)
+
+			}
 
 		});
 
