@@ -1,7 +1,5 @@
 // Variables
 var map;
-var lat = document.getElementById('latcoords');
-var lng = document.getElementById('longcoords');
 
 	// Style Map Elements
 	var mapStyle = [
@@ -78,29 +76,9 @@ var lng = document.getElementById('longcoords');
 
 			},
 
-			// Sets the animation ( BOUNCE or DROP)
-			animation: google.maps.Animation.DROP,
-
-			// Sets wether marker is cliquable 
-			clickable: true,
-
-			// Drag marker
-			draggable: true,
-
-			// Set the cross underneath the draggable marker
-			crossOnDrag: false,
-
-			// Opaciy
-			opacity: 0.5,
-
 			// Sets the title when mouse hovers
 			title: 'Liège',
 
-			// Sets Visibility
-			visible: true,
-
-			// Sets the zIndex if multiple markers are displayed
-			zIndex: 1
 
 
 
@@ -205,88 +183,23 @@ function loadMap(){
 		},
 
 		// Set The map style
-		styles: shadeofgrey
+		//styles: shadeofgrey
 	};
 
+	//Get the id of the map container
 	var mapid = document.getElementById('gmap');
+
+	// Create the map
 	map = new google.maps.Map(mapid, mapOptions);
-	//updateCurrentLatLng(map.getCenter());
 
-	//Update the url with the current location and zoom
-	//updateUrlLocation(map.getCenter(), map.getZoom());
-
-	//mapEventListeners();
 
 	// Marker creation
 	var newMarker = this.addMarker();
 
+	// Add Info Window
 	addInfoWindow(newMarker);
 
-	google.maps.event.trigger(newMarker, 'click');
-
 }
-
-
-
-function mapEventListeners(){
-	var mouseMoveChanged = google.maps.event.addListener(map,'mousemove',
-		function(event){
-			updateCurrentLatLng(event.latLng);
-		});
-
-
-	// Use the right click to set the zoom to 11
-	var mouseDoubleClick = google.maps.event.addListener(map, 'rightclick',
-		function (event) {
-			var z = map.getZoom() + 1;
-			if(z<16){
-				map.setZoom(z);
-			}
-			else{
-				map.setZoom(11);
-			}
-
-			map.setCenter(event.latLng);
-		}
-	);
-
-	// Wait for map to load
-	var listenerIdle = google.maps.event.addListenerOnce(map, 'idle',
-		function(){
-			
-			//alert('Map is ready!');
-		}
-	);
-
-	//Drag end
-	var listenerDragEnd = google.maps.event.addListener(map, 'dragend',
-		function(){
-			updateUrlLocation(map.getCenter(),map.getZoom());
-		}
-	);
-
-	//Zoom Changed
-	var listenerZoomChanged = google.maps.event.addListener(map, 'zoom_changed',
-		function(){
-			updateUrlLocation(map.getCenter(), map.getZoom());
-		}
-	);
-}
-
-function updateCurrentLatLng(latLng){
-	lat.innerHTML = latLng.lat();
-	lng.innerHTML = latLng.lng();
-}
-
-
-// Updating the URL with the map center and zoom
-function updateUrlLocation(center,zoom){
-	var url= '?lat='+center.lat()+'&lon='+center.lng()+'&zoom='+zoom;
-
-	// Set the URL
-	window.history.pushState({center: center, zoom: zoom},'map center', url);
-}
-
 
 
 
