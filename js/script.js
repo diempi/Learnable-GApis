@@ -47,13 +47,13 @@ var map;
 // =========== MARKERS ===========
 
 	// Add a marker to the map
-	function addMarker(){
+	function addMarker(airport){
 
 		// Create tthe marker
 		var marker = new google.maps.Marker({
 			
 			//Position of marker
-			position: new google.maps.LatLng(50.633333, 5.566667),
+			position: new google.maps.LatLng(airport.lat, airport.lng),
 			
 			//map: map,	
 
@@ -77,7 +77,7 @@ var map;
 			},
 
 			// Sets the title when mouse hovers
-			title: 'Liège',
+			title: airport.airport,
 
 
 
@@ -133,10 +133,10 @@ var map;
 function loadMap(){
 	var mapOptions = {
 		// Map Zoom - Required
-		zoom: 11,
+		zoom: 4,
 
 		// Map Center - Required
-		center: new google.maps.LatLng(50.633333, 5.566667),
+		center: new google.maps.LatLng(39.828127,-98.579404),
 
 		// Limit Zoom
 		// minZoom: 10,
@@ -192,12 +192,17 @@ function loadMap(){
 	// Create the map
 	map = new google.maps.Map(mapid, mapOptions);
 
+	for (var i = 0; i<airportData.length; i++) {
 
-	// Marker creation
-	var newMarker = this.addMarker();
+		var airport = airportData[i];
 
-	// Add Info Window
-	addInfoWindow(newMarker);
+		// Marker creation
+		var newMarker = this.addMarker(airport);
+
+		// Add Info Window
+		addInfoWindow(newMarker);
+
+	}
 
 }
 
