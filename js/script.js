@@ -66,7 +66,7 @@
 				url: 'img/airplane-'+airport.icon+'.png',
 
 				// Sets the image size
-				size: new google.maps.Size(32,32),
+				size: airport.iconsize,
 
 				// Sets the origin of the image(top left)
 				origin: new google.maps.Point(0,0),
@@ -75,7 +75,7 @@
 				anchor: new google.maps.Point(16,32),
 
 				// Scales the image
-				scaledSize: new google.maps.Size(32,32)
+				scaledSize: airport.iconsize
 
 			},
 
@@ -202,6 +202,18 @@ function loadMap(){
         //Total flights
         airport.totalflights = (airport.aop + airport.dop);
         
+
+        //Scale        
+        if(airport.totalflights > 10000) {
+            airport.iconsize = new google.maps.Size(48,48);
+        }
+        else if((1000 <= airport.totalflights) && (airport.totalflights <= 10000)) {
+            airport.iconsize = new google.maps.Size(32,32);
+        }
+        else if(airport.totalflights < 1000) {
+            airport.iconsize = new google.maps.Size(16,16);
+        }
+
         //Set the icon
         if(airport.totalper >= 80) {
             airport.icon = 'green';            
@@ -215,9 +227,6 @@ function loadMap(){
         else {
             airport.icon = 'red';
         }
-        
-        //Set the icon size
-        airport.iconsize = new google.maps.Size(32,32);
 
 		// Marker creation
 		var newMarker = this.addMarker(airport);
