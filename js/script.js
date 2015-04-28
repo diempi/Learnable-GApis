@@ -1,5 +1,8 @@
 // Variables
-var map;
+	var map;
+
+	//Create a single infowindow
+	var infoWindow = new google.maps.InfoWindow();
 
 	// Style Map Elements
 	var mapStyle = [
@@ -110,21 +113,15 @@ var map;
         '</div>'+
         '</div>';
 
-		var InfoWindow = new google.maps.InfoWindow({
-
-			content: contentString,
-
-			disableAutoPan: false,
-
-			maxWidth: 300,
-
-			zIndex: 1
-
-		});
+	
 
 		google.maps.event.addListener(marker, 'click',function(e){
 
-			InfoWindow.open(map, marker);
+			infoWindow.close();
+
+			infoWindow.setContent(contentString);
+
+			infoWindow.open(map, marker);
 		});
 	}
 
@@ -133,6 +130,7 @@ var map;
 
 	// Creating the map
 function loadMap(){
+
 	var mapOptions = {
 		// Map Zoom - Required
 		zoom: 4,
