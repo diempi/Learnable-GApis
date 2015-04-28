@@ -203,7 +203,10 @@ function updateUrlLocation(center,zoom){
 				// Scales the image
 				scaledSize: new google.maps.Size(32,32)
 
-			}
+			},
+
+			// Set the animation ( BOUNCE or DROP)
+			animation: google.maps.Animation.BOUNCE,
 
 		});
 
