@@ -196,8 +196,22 @@ function loadMap(){
 
 		var airport = airportData[i];
 
+        //Avg percentage
+        airport.totalper = (airport.aper + airport.dper)/2;
+        
+        //Total flights
+        airport.totalflights = (airport.aop + airport.dop);
+        
+        //Set the icon color
+        airport.icon = 'green'; 
+        
+        //Set the icon size
+        airport.iconsize = new google.maps.Size(32,32);
+
 		// Marker creation
 		var newMarker = this.addMarker(airport);
+
+		newMarker.airport = airport;
 
 		// Add Info Window
 		addInfoWindow(newMarker);
