@@ -109,6 +109,7 @@ function loadMap(){
 	updateUrlLocation(map.getCenter(), map.getZoom());
 
 	mapEventListeners();
+	addMarker();
 }
 
 
@@ -171,6 +172,28 @@ function updateUrlLocation(center,zoom){
 	// Set the URL
 	window.history.pushState({center: center, zoom: zoom},'map center', url);
 }
+
+// =========== MARKERS ===========
+
+	// Add a marker to the map
+	function addMarker(){
+
+		// Create tthe marker
+		var marker = new google.maps.Marker({
+			
+			//Position of marker
+			position: new google.maps.LatLng(50.633333, 5.566667),
+			map: map
+
+		});
+
+		return marker;
+	}
+	
+
+// ===============================
+
+
 
 // Main Code
 google.maps.event.addDomListener(window,'load',loadMap());
