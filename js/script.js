@@ -222,6 +222,10 @@ function loadMap(){
 
 }
 
+//Add Commas to number
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 
 // Main Code
