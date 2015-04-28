@@ -184,7 +184,7 @@ function updateUrlLocation(center,zoom){
 			//Position of marker
 			position: new google.maps.LatLng(50.633333, 5.566667),
 			
-			map: map,	
+			//map: map,	
 
 			icon: {
 
@@ -207,6 +207,8 @@ function updateUrlLocation(center,zoom){
 
 		});
 
+		marker.setMap(map);
+		marker.setVisible(true);
 		return marker;
 	}
 	
