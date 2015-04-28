@@ -44,6 +44,76 @@ var lng = document.getElementById('longcoords');
 
 
 // Methods
+
+
+// =========== MARKERS ===========
+
+	// Add a marker to the map
+	function addMarker(){
+
+		// Create tthe marker
+		var marker = new google.maps.Marker({
+			
+			//Position of marker
+			position: new google.maps.LatLng(50.633333, 5.566667),
+			
+			//map: map,	
+
+			icon: {
+
+				// Url of the image
+				url: 'img/airplane-green.png',
+
+				// Sets the image size
+				size: new google.maps.Size(32,32),
+
+				// Sets the origin of the image(top left)
+				origin: new google.maps.Point(0,0),
+
+				// Sets the anchor(middle, bottom)
+				anchor: new google.maps.Point(16,32),
+
+				// Scales the image
+				scaledSize: new google.maps.Size(32,32)
+
+			},
+
+			// Sets the animation ( BOUNCE or DROP)
+			animation: google.maps.Animation.DROP,
+
+			// Sets wether marker is cliquable 
+			clickable: true,
+
+			// Drag marker
+			draggable: true,
+
+			// Set the cross underneath the draggable marker
+			crossOnDrag: false,
+
+			// Opaciy
+			opacity: 0.5,
+
+			// Sets the title when mouse hovers
+			title: 'Liège',
+
+			// Sets Visibility
+			visible: true,
+
+			// Sets the zIndex if multiple markers are displayed
+			zIndex: 1
+
+
+
+		});
+
+		marker.setMap(map);
+		marker.setVisible(true);
+		return marker;
+	}
+	
+
+// ===============================
+
 	// Creating the map
 function loadMap(){
 	var mapOptions = {
@@ -173,50 +243,6 @@ function updateUrlLocation(center,zoom){
 	window.history.pushState({center: center, zoom: zoom},'map center', url);
 }
 
-// =========== MARKERS ===========
-
-	// Add a marker to the map
-	function addMarker(){
-
-		// Create tthe marker
-		var marker = new google.maps.Marker({
-			
-			//Position of marker
-			position: new google.maps.LatLng(50.633333, 5.566667),
-			
-			//map: map,	
-
-			icon: {
-
-				// Url of the image
-				url: 'img/airplane-green.png',
-
-				// Sets the image size
-				size: new google.maps.Size(32,32),
-
-				// Sets the origin of the image(top left)
-				origin: new google.maps.Point(0,0),
-
-				// Sets the anchor(middle, bottom)
-				anchor: new google.maps.Point(16,32),
-
-				// Scales the image
-				scaledSize: new google.maps.Size(32,32)
-
-			},
-
-			// Set the animation ( BOUNCE or DROP)
-			animation: google.maps.Animation.BOUNCE,
-
-		});
-
-		marker.setMap(map);
-		marker.setVisible(true);
-		return marker;
-	}
-	
-
-// ===============================
 
 
 
