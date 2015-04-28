@@ -92,21 +92,23 @@ var map;
 	// INfowindow 
 	function addInfoWindow(marker){
 
+		var details = marker.airport;
+
 		var contentString = '<div class="infowindowcontent">'+
-      '<div class="row">' +
-      '<p class="total greenbk">78.3%</p>'+
-      '<p class="location">LIÈGE</p>'+
-      '<p class="code">LG</p>'+
-      '</div>'+
-      '<div class="data">'+
-      '<p class="tagbelow">Avg On-Time</p>'+
-      '<p class="label">Arrivées</p>'+
-      '<p class="details">76% (8,590)</p>' +
-      '<p class="label">Départs</p>'+
-      '<p class="details">80.5% (8,589)</p>' +
-      '<p class="coords">50.633333, 5.566667</p>' +
-      '</div>' +
-     '</div>';
+        '<div class="row">' +
+        '<p class="total '+details.icon+'bk">'+Math.round(details.totalper*10)/10+'%</p>'+
+        '<p class="location">'+details.airport.split("(")[0].substring(0,19)+'</p>'+
+        '<p class="code">'+details.code+'</p>'+
+        '</div>'+
+        '<div class="data">'+
+        '<p class="tagbelow">Avg On-Time</p>'+
+        '<p class="label">Arrivals</p>'+
+        '<p class="details">'+details.aper+'% ('+numberWithCommas(details.aop)+')</p>' +
+        '<p class="label">Departures</p>'+
+        '<p class="details">'+details.dper+'% ('+numberWithCommas(details.dop)+')</p>' +        
+        '<p class="coords">'+details.lat+' , '+details.lng+'</p>' +
+        '</div>'+
+        '</div>';
 
 		var InfoWindow = new google.maps.InfoWindow({
 
