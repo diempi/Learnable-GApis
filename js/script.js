@@ -221,6 +221,9 @@ function loadMap(){
 	var newMarker = this.addMarker();
 
 	addInfoWindow(newMarker);
+
+	google.maps.event.trigger(newMarker, 'click');
+
 }
 
 
